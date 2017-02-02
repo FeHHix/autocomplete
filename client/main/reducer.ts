@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 
-import typehead from '../typehead';
+import typeahead from '../typeahead';
 
 const rootReducer = combineReducers({
-	typehead
+	typeahead
 });
 
 export default rootReducer;
-

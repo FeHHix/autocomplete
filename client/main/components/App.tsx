@@ -2,10 +2,10 @@ import { Dispatch } from 'redux'; //it calls action to update state of app
 import { connect } from 'react-redux';
 import * as React from 'react';
 
-import { 
-	Header,
-	model,
-	getHints 
+import {
+  Header,
+  model,
+  getHints
 } from '../../typeahead';
 
 interface AppProps {
@@ -16,7 +16,7 @@ interface AppProps {
 class App extends React.Component<AppProps, void> {
 	render() {
 		const { dispatch } = this.props;
-		
+
 		return(
 			<div className="typeaheadapp">
 				<Header getHints={(text: string) => dispatch(getHints(text))} />
@@ -24,4 +24,10 @@ class App extends React.Component<AppProps, void> {
 		);
 	}
 }
+
+const mapStateToProps = state => ({
+	hints: state.hints
+});
+
+export default connect(mapStateToProps)(App);
 
