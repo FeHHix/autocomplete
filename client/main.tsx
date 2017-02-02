@@ -11,8 +11,8 @@ const initialState = {};
 const store: Store<any> = createStore(rootReducer, initialState);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('app')
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('app);
 );

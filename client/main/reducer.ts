@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 
-import todos from '../todos';
+import typehead from '../typehead';
 
 const rootReducer = combineReducers({
-  todos
+	typehead
 });
 
 export default rootReducer;
+

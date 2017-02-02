@@ -1,45 +1,20 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from 'redux'; //it calls action to update state of app
 import { connect } from 'react-redux';
 import * as React from 'react';
 
-import {
-  Header,
-  MainSection,
-  model,
-  addTodo,
-  editTodo,
-  clearCompleted,
-  completeAll,
-  completeTodo,
-  deleteTodo
-} from '../../todos';
+import { Header } from '../../typeahead';
 
 interface AppProps {
-  todos: model.Todo[];
-  dispatch: Dispatch<{}>;
+
 }
 
 class App extends React.Component<AppProps, void> {
-  render() {
-    const { todos, dispatch } = this.props;
-
-    return (
-      <div className="todoapp">
-        <Header addTodo={(text: string) => dispatch(addTodo(text))} />
-        <MainSection
-            todos={todos}
-            editTodo={(t,s) => dispatch(editTodo(t, s))}
-            deleteTodo={(t: model.Todo) => dispatch(deleteTodo(t))}
-            completeTodo={(t: model.Todo) => dispatch(completeTodo(t))}
-            clearCompleted={() => dispatch(clearCompleted())}
-            completeAll={() => dispatch(completeAll())}/>
-      </div>
-    );
-  }
+	render() {
+		return(
+			<div className="typeaheadapp">
+				<Header />
+			</div>
+		);
+	}
 }
 
-const mapStateToProps = state => ({
-  todos: state.todos
-});
-
-export default connect(mapStateToProps)(App);

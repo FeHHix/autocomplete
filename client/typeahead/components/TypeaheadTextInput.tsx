@@ -1,18 +1,18 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-interface TodoTextInputProps {
-  onSave: (text:string)=>void;
+interface TypeaheadTextInputProps {
+  onTypeahead: (text:string)=>void;
   text?: string;
   placeholder?: string,
   editing?: boolean;
   newTodo?: boolean;
 }
-interface TodoTextInputState {
+interface TypeaheadTextInputState {
   text: string;
 }
 
-class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputState> {
+class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, TypeaheadTextInputState> {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -23,7 +23,7 @@ class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputSta
   handleSubmit(e) {
     const text = e.target.value.trim();
     if (e.which === 13) {
-      this.props.onSave(text);
+      this.props.onTypeahead(text);
       if (this.props.newTodo) {
         this.setState({ text: '' });
       }
@@ -36,7 +36,7 @@ class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputSta
 
   handleBlur(e) {
     if (!this.props.newTodo) {
-      this.props.onSave(e.target.value);
+      this.props.onTypeahead(e.target.value);
     }
   }
 
@@ -59,4 +59,4 @@ class TodoTextInput extends React.Component<TodoTextInputProps, TodoTextInputSta
 }
 
 
-export default TodoTextInput;
+export default TypeaheadTextInput;
