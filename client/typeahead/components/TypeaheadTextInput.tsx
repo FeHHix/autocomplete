@@ -35,7 +35,7 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
         autoFocus={true}
         value={this.state.text}
         onChange={this.handleChange.bind(this)}
-        onKeyDown={this.handleSubmit.bind(this)} />
+        onKeyUp={this.handleSubmit.bind(this)} />
     );
   }
 }
