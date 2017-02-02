@@ -1,0 +1,1 @@
+export const GET_HINTS = "GET_HINTS";
