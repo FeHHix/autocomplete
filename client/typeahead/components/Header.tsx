@@ -15,6 +15,7 @@ class Header extends React.Component<HeaderProps, void> {
 	render() {
 		return(
 			<div className="header">
+				<h1>typeahead</h1>
 				<TypeaheadTextInput 
 					onTypeahead={this.handleSearch.bind(this)}
 					placeholder="Search Twitter users..." />
@@ -22,3 +23,5 @@ class Header extends React.Component<HeaderProps, void> {
 		)
 	}
 }
+
+export default Header;
