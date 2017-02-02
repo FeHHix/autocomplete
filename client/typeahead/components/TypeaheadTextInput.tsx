@@ -28,7 +28,6 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
   }
 
   render() {
-    console.log('render input');
     return (
       <input className="typeahead-input"
         type="text"
