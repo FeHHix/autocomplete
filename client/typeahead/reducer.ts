@@ -10,7 +10,11 @@ import {
 	GET_HINTS
 } from './constants/ActionTypes';
 
-const initialState: IState = [<ProfileCard>{}];
+const initialState: IState = [<ProfileCard>{
+	realName: '',
+	screenName: '',
+	description: '',
+}];
 
 export default handleActions<IState, RequestHint>({
 	[GET_HINTS]: (state: IState, action: Action<RequestHint>) : IState => {
