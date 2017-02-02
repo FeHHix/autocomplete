@@ -4,10 +4,9 @@ import * as classNames from 'classnames';
 interface TypeaheadTextInputProps {
   onTypeahead: (text:string)=>void;
   text?: string;
-  placeholder?: string,
-  editing?: boolean;
-  newTodo?: boolean;
+  placeholder?: string;
 }
+
 interface TypeaheadTextInputState {
   text: string;
 }
@@ -24,9 +23,6 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
     const text = e.target.value.trim();
     if (e.which === 13) {
       this.props.onTypeahead(text);
-      if (this.props.newTodo) {
-        this.setState({ text: '' });
-      }
     }
   }
 
@@ -42,11 +38,7 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
 
   render() {
     return (
-      <input className={
-        classNames({
-          edit: this.props.editing,
-          'new-todo': this.props.newTodo
-        })}
+      <input className="typeahead-input"
         type="text"
         placeholder={this.props.placeholder}
         autoFocus={true}
