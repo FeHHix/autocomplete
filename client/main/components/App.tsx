@@ -22,8 +22,6 @@ class App extends React.Component<AppProps, void> {
 		hints.map(function(hint, index) {
 			rows.push(<div key={index} className="hint">Подсказка: {hint.description}</div>);
 		});
-
-		console.log(rows);
 		
 		return(
 			<div className="typeaheadapp">
@@ -38,5 +36,5 @@ const mapStateToProps = state => ({
 	hints: state.hints
 });
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App); //connected to store
 
