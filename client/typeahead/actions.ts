@@ -1,12 +1,12 @@
 import { createAction, Action } from 'redux-actions';
 
-import { ProfileCard } from './model';
+import { RequestHint } from './model';
 
 import { GET_HINTS } from './constants/ActionTypes';
 
-const getHints = createAction<ProfileCard, string>(
+const getHints = createAction<RequestHint, string>(
 	GET_HINTS,
-	(text: string) => ({realName: text, screenName: text, description: text})
+	(text: string) => ({value: text})
 );
 
 export { getHints }
