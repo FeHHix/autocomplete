@@ -1,6 +1,6 @@
 import { createAction, Action } from 'redux-actions'
 
-import { RequestHint, IState } from './model'
+import { RequestHint, ProfileCard } from './model'
 
 import { Dispatch } from 'redux'
 
@@ -21,9 +21,9 @@ const requestItems = createAction<string, string>(
 	(text: string) => "FETHCING START"
 )
 
-const receiveItems = createAction<IState, any>(
+const receiveItems = createAction<ProfileCard[], any>(
 	RECEIVE_ITEMS,
-	(items: IState) => (items)
+	(items: ProfileCard[]) => (items)
 )
 
 const fetchItems = createAction<any, string>(
