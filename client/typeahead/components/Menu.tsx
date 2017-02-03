@@ -1,8 +1,6 @@
-import * as React from 'react';
-
-import { ProfileCard } from '../model';
-
-import TypeaheadItem from './TypeaheadItem';
+import * as React from 'react'
+import { ProfileCard } from '../model'
+import TypeaheadItem from './TypeaheadItem'
 
 interface MenuProps {
 	items: ProfileCard[]

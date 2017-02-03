@@ -1,6 +1,5 @@
-import * as React from 'react';
-
-import { ProfileCard } from '../model';
+import * as React from 'react'
+import { ProfileCard } from '../model'
 
 interface TypeaheadItemProps {
 	profileCard: ProfileCard;
@@ -10,6 +9,7 @@ interface TypeaheadItemProps {
 class TypeaheadItem extends React.Component<TypeaheadItemProps, void> {
 	render() {
 		const { profileCard } = this.props;
+
 		return(
 			<div className="profilecard">
 				<div className="profilecard-details">

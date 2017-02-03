@@ -1,13 +1,13 @@
-import { Dispatch } from 'redux'; //it calls action to update state of app
-import { connect } from 'react-redux';
-import * as React from 'react';
+import { Dispatch } from 'redux' //it calls action to update state of app
+import { connect } from 'react-redux'
+import * as React from 'react'
 
 import {
   Header,
   Menu,
   model,
   getHints
-} from '../../typeahead';
+} from '../../typeahead'
 
 interface AppProps {
 	hints: model.ProfileCard[],

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 
 interface TypeaheadTextInputProps {
   onTypeahead: (text:string)=>void;
@@ -41,4 +41,4 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
 }
 
 
-export default TypeaheadTextInput;
+export default TypeaheadTextInput
