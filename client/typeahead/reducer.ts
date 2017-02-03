@@ -16,7 +16,7 @@ const initialState: IState = [<ProfileCard>{
 	description: '',
 }];
 
-//use handleActions instead function with switch block
+//it uses handleActions instead function with switch block
 export default handleActions<IState, RequestHint>({
 	[GET_HINTS]: (state: IState, action: Action<RequestHint>) : IState => {
 		console.log('reduce... ' + action.type);

@@ -36,5 +36,5 @@ const mapStateToProps = state => ({
 	hints: state.hints
 });
 
-export default connect(mapStateToProps)(App); //connected to store
+export default connect(mapStateToProps)(App); //it connects an application to store
 
