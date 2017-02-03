@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import {
   Header,
+  Menu,
   model,
   getHints
 } from '../../typeahead';
@@ -26,7 +27,7 @@ class App extends React.Component<AppProps, void> {
 		return(
 			<div className="typeaheadapp">
 				<Header getHints={(text: string) => dispatch(getHints(text))} />
-				{rows}
+				<Menu items={hints} />
 			</div>
 		);
 	}
