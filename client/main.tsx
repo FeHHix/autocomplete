@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import App from './main/components/App'
 import rootReducer from './main/reducer'
 
-const store: Store<any> = createStore(rootReducer); //configuration store with empty initial state
+let store: Store<any> = createStore(rootReducer); //configuration store with empty initial state
 
 ReactDOM.render(
 	<Provider store={store}>
