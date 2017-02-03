@@ -18,19 +18,19 @@ const getHints = createAction<RequestHint, string>(
 
 const requestItems = createAction<string, string>(
 	REQUEST_ITEMS,
-	(text: string) => "FETHCING START"
+	(text: string) => "REQUEST ITEMS"
 )
 
-const receiveItems = createAction<ProfileCard[], any>(
+const receiveItems = createAction<ProfileCard[], string>(
 	RECEIVE_ITEMS,
-	(items: ProfileCard[]) => (items)
+	(json: string) => ([])
 )
 
 const fetchItems = createAction<any, string>(
 	FETCH_ITEMS,
 	(text: string, dispatch: Dispatch<{}>) => {
 		dispatch(requestItems(text));
-		return dispatch(receiveItems({}));
+		return dispatch(receiveItems(JSON.stringify({})));
 	}
 }
 
