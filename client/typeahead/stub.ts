@@ -1,4 +1,5 @@
 import { ProfileCard } from './model'
+import { forEach } from 'lodash'
 
 const items: ProfileCard[] = [
 	{
@@ -28,4 +29,17 @@ const items: ProfileCard[] = [
 	}
 ]
 
-export default items
+const api = {
+	getItems: (filter: string) => {
+		let matches = [];
+
+		forEach(items, (item) => {
+			if (item.realName.match(filter))
+				matches.push(item);
+		});
+
+		return matches;
+	}
+}
+
+export default api

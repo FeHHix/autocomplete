@@ -9,7 +9,7 @@ import { Promise } from 'es6-promise'
 // import request from 'superagent/lib/client'
 
 import { ReceiveItems, RequestItem, ProfileCard } from './model'
-import stub from './stub'
+import api from './stub'
 
 import { 
 	REQUEST_ITEMS,
@@ -17,15 +17,10 @@ import {
 	FETCH_ITEMS
 } from './constants/ActionTypes'
 
-interface ApiAsync {
-	value: any;
+interface Fetch {
+	value: string;
 	dispatch: Dispatch<{}>;
 }
-
-// const getHints = createAction<RequestHint, string>(
-// 	GET_HINTS,
-// 	(text: string) => ({value: text})
-// )
 
 const requestItems = createAction<RequestItem, string>(
 	REQUEST_ITEMS,
@@ -37,20 +32,20 @@ const receiveItems = createAction<ReceiveItems, ProfileCard[]>(
 	(items: ProfileCard[]) => ({items: items})
 )
 
-const fetchItems = createAction<Promise<void>, ApiAsync>(
+const fetchItems = createAction<Promise<void>, Fetch>(
 	FETCH_ITEMS,
-	(api: ApiAsync) => {
-		api.dispatch(requestItems(api.value));
+	(fetch: Fetch) => {
+		fetch.dispatch(requestItems(fetch.value));
 
 		const p: Promise<String> = new Promise(
 			(resolve: (str: string) => void, reject: (str: string) => void) => {
-				resolve(JSON.stringify(stub));
+				resolve(JSON.stringify(api.getItems(fetch.value)));
 			}
 		);
 
 		return p.then((json: string) => {
 			console.log('load items complete');
-			api.dispatch(receiveItems(JSON.parse(json)));
+			fetch.dispatch(receiveItems(JSON.parse(json)));
 		});
 
 		// return fetch('https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + api.value)
