@@ -8,7 +8,7 @@ import { Dispatch } from 'redux'
 
 interface ApiAsync {
 	value: any;
-	dispatch: Dispatch<{}>
+	dispatch: Dispatch<{}>;
 }
 
 import { 
@@ -35,14 +35,14 @@ const receiveItems = createAction<ProfileCard[], string>(
 
 const fetchItems = createAction<any, ApiAsync>(
 	FETCH_ITEMS,
-	(reuqest: ApiAsync) => {
-		request.dispatch(requestItems(request.value));
+	(api: ApiAsync) => {
+		api.dispatch(requestItems(api.value));
 
 		return request
-			.post('https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + request.value)
+			.post('https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + api.value)
 			.set('Accept', 'application/json')
 			.end(function(err, res) {
-				request.dispatch(receiveItems(JSON.stringify({})));
+				api.dispatch(receiveItems(JSON.stringify(res)));
 			});
 	}
 )

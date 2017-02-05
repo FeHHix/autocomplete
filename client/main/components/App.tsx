@@ -19,17 +19,15 @@ class App extends React.Component<AppProps, void> {
 	render() {
 		const { dispatch, items } = this.props;
 
-		console.log(this.props);
-
 		let rows = [];
 
-		items.map(function(hint, index) {
-			rows.push(<div key={index} className="item">Подсказка: {hint.description}</div>);
+		items.map(function(item, index) {
+			rows.push(<div key={index} className="item">Подсказка: {item.description}</div>);
 		});
 		
 		return(
 			<div className="typeaheadapp">
-				<Header getHints={(text: string) => dispatch(fetchItems({value:text, dispatch}))} />
+				<Header getItems={(text: string) => dispatch(fetchItems({value:text, dispatch}))} />
 				<Menu items={items} />
 			</div>
 		);

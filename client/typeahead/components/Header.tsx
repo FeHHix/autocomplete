@@ -3,13 +3,13 @@ import * as React from 'react';
 import TypeaheadTextInput from './TypeaheadTextInput';
 
 interface HeaderProps {
-	getHints: (text: string) => any;
+	getItems: (text: string) => any;
 };
 
 class Header extends React.Component<HeaderProps, void> {
 	handleSearch(text: string) {
 		if (text.length !== 0 )
-			this.props.getHints(text);
+			this.props.getItems(text);
 	}
 
 	render() {
