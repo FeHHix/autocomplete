@@ -1,8 +1,15 @@
+import request from 'superagent'
+
 import { createAction, Action } from 'redux-actions'
 
 import { RequestHint, ProfileCard } from './model'
 
 import { Dispatch } from 'redux'
+
+interface ApiAsync {
+	value: any;
+	dispatch: Dispatch<{}>
+}
 
 import { 
 	GET_HINTS,
@@ -18,7 +25,7 @@ const getHints = createAction<RequestHint, string>(
 
 const requestItems = createAction<string, string>(
 	REQUEST_ITEMS,
-	(text: string) => "REQUEST ITEMS"
+	(text: string) => ("REQUEST ITEMS WITH " + text)
 )
 
 const receiveItems = createAction<ProfileCard[], string>(
@@ -26,12 +33,18 @@ const receiveItems = createAction<ProfileCard[], string>(
 	(json: string) => ([])
 )
 
-const fetchItems = createAction<any, string>(
+const fetchItems = createAction<any, ApiAsync>(
 	FETCH_ITEMS,
-	(text: string, dispatch: Dispatch<{}>) => {
-		dispatch(requestItems(text));
-		return dispatch(receiveItems(JSON.stringify({})));
-	}
-}
+	(reuqest: ApiAsync) => {
+		request.dispatch(requestItems(request.value));
 
-export { getHints }
+		return request
+			.post('https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + request.value)
+			.set('Accept', 'application/json')
+			.end(function(err, res) {
+				request.dispatch(receiveItems(JSON.stringify({})));
+			});
+	}
+)
+
+export { getHints, fetchItems }

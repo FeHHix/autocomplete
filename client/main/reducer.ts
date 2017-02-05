@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
-import hints from '../typeahead';
+import data from '../typeahead';
 
 const rootReducer = combineReducers({
-	hints
+	data
 });
 
 export default rootReducer;

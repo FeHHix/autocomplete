@@ -6,35 +6,39 @@ import {
   Header,
   Menu,
   model,
-  getHints
+  fetchItems
 } from '../../typeahead'
 
 interface AppProps {
-	hints: model.ProfileCard[],
+	isFetching: boolean;
+	items: model.ProfileCard[];
 	dispatch: Dispatch<{}>;
 }
 
 class App extends React.Component<AppProps, void> {
 	render() {
-		const { dispatch, hints } = this.props;
+		const { dispatch, items } = this.props;
+
+		console.log(this.props);
 
 		let rows = [];
 
-		hints.map(function(hint, index) {
-			rows.push(<div key={index} className="hint">Подсказка: {hint.description}</div>);
+		items.map(function(hint, index) {
+			rows.push(<div key={index} className="item">Подсказка: {hint.description}</div>);
 		});
 		
 		return(
 			<div className="typeaheadapp">
-				<Header getHints={(text: string) => dispatch(getHints(text))} />
-				<Menu items={hints} />
+				<Header getHints={(text: string) => dispatch(fetchItems({value:text, dispatch}))} />
+				<Menu items={items} />
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = state => ({
-	hints: state.hints
+	isFetching: state.data.isFetching,
+	items: state.data.items
 });
 
 export default connect(mapStateToProps)(App); //it connects an application to store

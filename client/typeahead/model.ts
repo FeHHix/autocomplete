@@ -8,4 +8,7 @@ export type ProfileCard = {
 	description: string;
 };
 
-export type IState = ProfileCard[];
+export type IState = {
+	isFetching: boolean;
+	items?: ProfileCard[];
+};
