@@ -1,13 +1,15 @@
 import { handleActions, Action } from 'redux-actions';
 
 import { 
-	ProfileCard, 
-	RequestHint, 
+	ProfileCard,
+	RequestItem,
+	ReceiveItems, 
 	IState
 } from './model';
 
 import {
-	GET_HINTS
+	REQUEST_ITEMS,
+	RECEIVE_ITEMS
 } from './constants/ActionTypes';
 
 const initialState: IState = {
@@ -20,14 +22,23 @@ const initialState: IState = {
 };
 
 //it uses handleActions instead function with switch block
-export default handleActions<IState, RequestHint>({
-	[GET_HINTS]: (state: IState, action: Action<RequestHint>) : IState => {
+export default handleActions<IState, any>({
+	[REQUEST_ITEMS] : (state: IState, action: Action<RequestItem>) : IState => {
+		console.log('REQUEST_ITEMS. Fetching is starting as ' + action.payload.value);
+
 		return {
-			isFetching: true, 
-			items:[{
-			realName: 'hint ' + action.payload.value,
-			screenName: 'hint ' + action.payload.value,
-			description: 'hint ' + action.payload.value
-		}], ...state};
+			isFetching: true,
+			items: []
+		};
+	},
+	[RECEIVE_ITEMS]: (state: IState, action: Action<ReceiveItems>) : IState => {
+		console.log('RECEIVE_ITEMS. Fetching completed');
+
+		console.log(action.payload.items);
+
+		return {
+			isFetching: false, 
+			items: action.payload.items
+		};
 	}
 }, initialState);

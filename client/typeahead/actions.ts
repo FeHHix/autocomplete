@@ -8,11 +8,10 @@ import { Promise } from 'es6-promise'
 
 // import request from 'superagent/lib/client'
 
-import { RequestHint, ProfileCard } from './model'
+import { ReceiveItems, RequestItem, ProfileCard } from './model'
 import stub from './stub'
 
 import { 
-	GET_HINTS,
 	REQUEST_ITEMS,
 	RECEIVE_ITEMS,
 	FETCH_ITEMS
@@ -23,19 +22,19 @@ interface ApiAsync {
 	dispatch: Dispatch<{}>;
 }
 
-const getHints = createAction<RequestHint, string>(
-	GET_HINTS,
+// const getHints = createAction<RequestHint, string>(
+// 	GET_HINTS,
+// 	(text: string) => ({value: text})
+// )
+
+const requestItems = createAction<RequestItem, string>(
+	REQUEST_ITEMS,
 	(text: string) => ({value: text})
 )
 
-const requestItems = createAction<string, string>(
-	REQUEST_ITEMS,
-	(text: string) => ("REQUEST ITEMS WITH " + text)
-)
-
-const receiveItems = createAction<ProfileCard[], string>(
+const receiveItems = createAction<ReceiveItems, ProfileCard[]>(
 	RECEIVE_ITEMS,
-	(json: string) => ([])
+	(items: ProfileCard[]) => ({items: items})
 )
 
 const fetchItems = createAction<Promise<void>, ApiAsync>(
@@ -50,6 +49,7 @@ const fetchItems = createAction<Promise<void>, ApiAsync>(
 		);
 
 		return p.then((json: string) => {
+			console.log('load items complete');
 			api.dispatch(receiveItems(JSON.parse(json)));
 		});
 
@@ -73,4 +73,4 @@ const fetchItems = createAction<Promise<void>, ApiAsync>(
 	}
 )
 
-export { getHints, fetchItems }
+export { fetchItems }
