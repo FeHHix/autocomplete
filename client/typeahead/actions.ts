@@ -1,15 +1,12 @@
-import request from 'superagent'
-
 import { createAction, Action } from 'redux-actions'
-
-import { RequestHint, ProfileCard } from './model'
 
 import { Dispatch } from 'redux'
 
-interface ApiAsync {
-	value: any;
-	dispatch: Dispatch<{}>;
-}
+import fetch from 'isomorphic-fetch'
+
+import superAgent from 'superagent'
+
+import { RequestHint, ProfileCard } from './model'
 
 import { 
 	GET_HINTS,
@@ -17,6 +14,11 @@ import {
 	RECEIVE_ITEMS,
 	FETCH_ITEMS
 } from './constants/ActionTypes'
+
+interface ApiAsync {
+	value: any;
+	dispatch: Dispatch<{}>;
+}
 
 const getHints = createAction<RequestHint, string>(
 	GET_HINTS,
@@ -33,13 +35,18 @@ const receiveItems = createAction<ProfileCard[], string>(
 	(json: string) => ([])
 )
 
-const fetchItems = createAction<any, ApiAsync>(
+const fetchItems = createAction<string, ApiAsync>(
 	FETCH_ITEMS,
 	(api: ApiAsync) => {
 		api.dispatch(requestItems(api.value));
 
-		return request
-			.post('https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + api.value)
+		// return fetch('https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + api.value)
+	 //    	.then(response => response.json())
+	 //    	.then(json => api.dispatch(receiveItems(JSON.stringify(json)))
+	 //    );
+
+		return superAgent
+			.get('https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + api.value)
 			.set('Accept', 'application/json')
 			.end(function(err, res) {
 				api.dispatch(receiveItems(JSON.stringify(res)));

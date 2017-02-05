@@ -7,9 +7,7 @@ import { Provider } from 'react-redux'
 import App from './main/components/App'
 import rootReducer from './main/reducer'
 
-let createStoreWithMiddleware = applyMiddleware(thunkMiddleware)(createStore)
-
-let store: Store<any> = createStoreWithMiddleware(rootReducer) //configuration store with empty initial state
+let store: Store<any> = createStore(rootReducer, {}, applyMiddleware(thunkMiddleware)) //configuration store with empty initial state
 
 ReactDOM.render(
 	<Provider store={store}>
