@@ -1,5 +1,5 @@
 import { ProfileCard } from './model'
-import { forEach } from 'lodash'
+import { forEach, includes } from 'lodash'
 
 const items: ProfileCard[] = [
 	{
@@ -31,11 +31,15 @@ const items: ProfileCard[] = [
 
 const api = {
 	getItems: (filter: string) => {
+		const value = filter.trim();
+
 		let matches = [];
 
 		forEach(items, (item) => {
-			if (item.realName.match(filter))
+			if (includes(item.realName, value)) {
+				console.log('MATCHED');
 				matches.push(item);
+			}
 		});
 
 		return matches;

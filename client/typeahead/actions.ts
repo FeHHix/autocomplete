@@ -9,7 +9,7 @@ import { Promise } from 'es6-promise'
 // import request from 'superagent/lib/client'
 
 import { ReceiveItems, RequestItem, ProfileCard } from './model'
-import api from './stub'
+import api from './api'
 
 import { 
 	REQUEST_ITEMS,

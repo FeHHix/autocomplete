@@ -8,8 +8,7 @@ interface HeaderProps {
 
 class Header extends React.Component<HeaderProps, void> {
 	handleSearch(text: string) {
-		if (text.length !== 0 )
-			this.props.getItems(text);
+		this.props.getItems(text);
 	}
 
 	render() {
