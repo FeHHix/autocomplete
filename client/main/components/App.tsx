@@ -23,16 +23,10 @@ class App extends React.Component<AppProps, void> {
 
 		const { isFetching, dispatch, hints, hint } = this.props;
 		const selectValue = hint ? hint.realName : '';
-
-		let rows = [];
-
-		hints.map(function(hint) {
-			rows.push(<div key={hint.id} className="hint">Подсказка: {hint.description}</div>);
-		});
 		
 		return(
 			<div className="typeaheadapp">
-				<Header value={selectValue} getHints={(text: string) => dispatch(fetchHints({value:text, dispatch}))} />
+				<Header value={selectValue} getHints={(text: string) => dispatch(fetchHints({value:text, dispatch:dispatch}))} />
 				<Menu hints={hints} onClickHint={(hint: model.ProfileCard) => dispatch(selectHint(hint))} />
 			</div>
 		);

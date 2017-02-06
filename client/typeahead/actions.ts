@@ -6,10 +6,6 @@ import { Dispatch } from 'redux'
 
 import { Promise } from 'es6-promise'
 
-// import fetch from 'isomorphic-fetch'
-
-// import request from 'superagent'
-
 import api from './api'
 
 import {
@@ -20,10 +16,11 @@ import {
 
 import { 
 	SELECT_HINT,
-	REQUEST_HINTS_SUCCESS,
-	REQUEST_HINTS_FAILURE,
+	REQUEST_HINTS,
 	RECEIVE_HINTS,
-	FETCH_HINTS
+	FETCH_HINTS,
+	FETCH_HINTS_SUCCESS,
+	FETCH_HINTS_FAILURE
 } from './constants/ActionTypes'
 
 interface Fetch {
@@ -36,13 +33,8 @@ const selectHint = createAction<ProfileCard, ProfileCard>(
 	(item: ProfileCard) => (item)
 )
 
-const requestHintsSuccess = createAction<RequestItem, string>(
-	REQUEST_HINTS_SUCCESS,
-	(text: string) => ({value: text})
-)
-
-const requestHintsFailure = createAction<RequestItem, string>(
-	REQUEST_HINTS_FAILURE,
+const requestHints = createAction<RequestItem, string>(
+	REQUEST_HINTS,
 	(text: string) => ({value: text})
 )
 
@@ -54,45 +46,28 @@ const receiveHints = createAction<ReceiveItems, ProfileCard[]>(
 const fetchHints = createAction<Promise<void>, Fetch>(
 	FETCH_HINTS,
 	(fetch: Fetch) => {
-		fetch.dispatch(requestHintsSuccess(fetch.value));
+		fetch.dispatch(requestHints(fetch.value));
 
 		const p: Promise<String> = new Promise(
 			(resolve: (str: string) => void, reject: (str: string) => void) => {
 				resolve(JSON.stringify(api.get(fetch.value)));
 			}
 		);
-
+		//https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=
 		return p.then((json: string) => {
 			console.log('load items complete');
 			fetch.dispatch(receiveHints(JSON.parse(json)));
 		});
-
-		// return fetch('https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + api.value)
-	 //    	.then(response => response.json())
-	 //    	.then(json => api.dispatch(receiveItems(JSON.stringify(json)))
-	 //    );
-
-	 	// new Promise((resolve, reject) => {
-
-	 	// });
-
-		// return request
-		// 	.get('https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + api.value)
-		// 	.set('Accept', 'application/json')
-		// 	.end(function(err, res) {
-		// 		api.dispatch(receiveItems(JSON.stringify(res)));
-		// 	});
-
-		//return api.dispatch(receiveItems(JSON.stringify(stub)));
 	}
 )
 
-const API = {
-	[CALL_API]: {
-		endpoint: 'https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search',
-    	method: 'GET',
-    	types: [requestHintsSuccess, receiveHints, requestHintsFailure]
-	}
-}
+// const fetchHints = (text: string) => {
+// 	console.log('fetchHints');
+// 	return {[CALL_API]: {
+// 		endpoint: 'https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + text,
+//     	method: 'POST',
+//     	types: [receiveHints, FETCH_HINTS_SUCCESS, FETCH_HINTS_FAILURE]
+// 	}}
+// }
 
 export { selectHint, fetchHints }

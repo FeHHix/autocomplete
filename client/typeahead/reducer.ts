@@ -9,8 +9,7 @@ import {
 
 import {
 	SELECT_HINT,
-	REQUEST_HINTS_SUCCESS,
-	REQUEST_HINTS_FAILURE,
+	REQUEST_HINTS,
 	RECEIVE_HINTS
 } from './constants/ActionTypes';
 
@@ -22,22 +21,12 @@ const initialState: IState = {
 
 //it uses handleActions instead function with switch block
 export default handleActions<IState, any>({
-	[REQUEST_HINTS_SUCCESS] : (state: IState, action: Action<RequestItem>) : IState => {
+	[REQUEST_HINTS] : (state: IState, action: Action<RequestItem>) : IState => {
 		console.log('REQUEST_ITEMS. Fetching is starting as ' + action.payload.value);
 
 		return {
 			...state,
 			isFetching: true,
-			selectHint: null,
-			hints: []
-		};
-	},
-	[REQUEST_HINTS_FAILURE] : (state: IState, action: Action<RequestItem>) : IState => {
-		console.log('REQUEST_ITEMS. Fetching is starting as ' + action.payload.value);
-
-		return {
-			...state,
-			isFetching: false,
 			selectHint: null,
 			hints: []
 		};
