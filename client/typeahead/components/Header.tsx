@@ -4,12 +4,12 @@ import TypeaheadTextInput from './TypeaheadTextInput';
 
 interface HeaderProps {
 	value?: string;
-	getItems: (text: string) => any;
+	getHints: (text: string) => any;
 };
 
 class Header extends React.Component<HeaderProps, void> {
 	handleSearch(text: string) {
-		this.props.getItems(text);
+		this.props.getHints(text);
 	}
 
 	render() {

@@ -6,14 +6,14 @@ import {
   Header,
   Menu,
   model,
-  fetchItems,
-  selectItem
+  fetchHints,
+  selectHint
 } from '../../typeahead'
 
 interface AppProps {
 	isFetching: boolean;
-	item: model.ProfileCard;
-	items: model.ProfileCard[];
+	hint: model.ProfileCard;
+	hints: model.ProfileCard[];
 	dispatch: Dispatch<{}>;
 }
 
@@ -21,19 +21,19 @@ class App extends React.Component<AppProps, void> {
 	render() {
 		console.log('App render');
 
-		const { isFetching, dispatch, items, item } = this.props;
-		const selectValue = item ? item.realName : '';
+		const { isFetching, dispatch, hints, hint } = this.props;
+		const selectValue = hint ? hint.realName : '';
 
 		let rows = [];
 
-		items.map(function(item) {
-			rows.push(<div key={item.id} className="item">Подсказка: {item.description}</div>);
+		hints.map(function(hint) {
+			rows.push(<div key={hint.id} className="hint">Подсказка: {hint.description}</div>);
 		});
 		
 		return(
 			<div className="typeaheadapp">
-				<Header value={selectValue} getItems={(text: string) => dispatch(fetchItems({value:text, dispatch}))} />
-				<Menu items={items} onClickItem={(item: model.ProfileCard) => dispatch(selectItem(item))} />
+				<Header value={selectValue} getHints={(text: string) => dispatch(fetchHints({value:text, dispatch}))} />
+				<Menu hints={hints} onClickHint={(hint: model.ProfileCard) => dispatch(selectHint(hint))} />
 			</div>
 		);
 	}
@@ -41,8 +41,8 @@ class App extends React.Component<AppProps, void> {
 
 const mapStateToProps = state => ({
 	isFetching: state.data.isFetching,
-	item: state.data.selectItem,
-	items: state.data.items
+	hint: state.data.selectHint,
+	hints: state.data.hints
 });
 
 export default connect(mapStateToProps)(App); //it connects an application to store

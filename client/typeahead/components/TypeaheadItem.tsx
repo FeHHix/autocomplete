@@ -2,7 +2,7 @@ import * as React from 'react'
 import { ProfileCard } from '../model'
 
 interface TypeaheadItemProps {
-	onClick: (item: ProfileCard) => void;
+	onClick: (hint: ProfileCard) => void;
 	profileCard: ProfileCard;
 	key?: any;
 }

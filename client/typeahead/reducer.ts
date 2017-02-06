@@ -8,46 +8,57 @@ import {
 } from './model';
 
 import {
-	SELECT_ITEM,
-	REQUEST_ITEMS,
-	RECEIVE_ITEMS
+	SELECT_HINT,
+	REQUEST_HINTS_SUCCESS,
+	REQUEST_HINTS_FAILURE,
+	RECEIVE_HINTS
 } from './constants/ActionTypes';
 
 const initialState: IState = {
 	isFetching: false,
-	selectItem: null,
-	items: []
+	selectHint: null,
+	hints: []
 };
 
 //it uses handleActions instead function with switch block
 export default handleActions<IState, any>({
-	[REQUEST_ITEMS] : (state: IState, action: Action<RequestItem>) : IState => {
+	[REQUEST_HINTS_SUCCESS] : (state: IState, action: Action<RequestItem>) : IState => {
 		console.log('REQUEST_ITEMS. Fetching is starting as ' + action.payload.value);
 
 		return {
 			...state,
 			isFetching: true,
-			selectItem: null,
-			items: []
+			selectHint: null,
+			hints: []
 		};
 	},
-	[RECEIVE_ITEMS]: (state: IState, action: Action<ReceiveItems>) : IState => {
+	[REQUEST_HINTS_FAILURE] : (state: IState, action: Action<RequestItem>) : IState => {
+		console.log('REQUEST_ITEMS. Fetching is starting as ' + action.payload.value);
+
+		return {
+			...state,
+			isFetching: false,
+			selectHint: null,
+			hints: []
+		};
+	},
+	[RECEIVE_HINTS]: (state: IState, action: Action<ReceiveItems>) : IState => {
 		console.log('RECEIVE_ITEMS. Fetching completed');
 
-		console.log(action.payload.items);
+		console.log(action.payload.hints);
 
 		return {
 			...state, 
 			isFetching: false,
-			items: action.payload.items
+			hints: action.payload.hints
 		};
 	},
-	[SELECT_ITEM]: (state: IState, action: Action<ProfileCard>) : IState => {
+	[SELECT_HINT]: (state: IState, action: Action<ProfileCard>) : IState => {
 		console.log('SELECT_ITEM. Selected item ' + action.payload.realName);
 
 		return {
 			...state,
-			selectItem: action.payload
+			selectHint: action.payload
 		}
 	}
 }, initialState);

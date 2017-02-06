@@ -35,7 +35,7 @@ const items: ProfileCard[] = [
 ]
 
 const api = {
-	getItems: (filter: string) => {
+	get: (filter: string) => {
 		const value = filter.trim();
 
 		let matches = [];

@@ -10,11 +10,11 @@ export type RequestItem = {
 }
 
 export type ReceiveItems = {
-	items: ProfileCard[];
+	hints: ProfileCard[];
 }
 
 export type IState = {
 	isFetching: boolean;
-	selectItem?: ProfileCard;
-	items?: ProfileCard[];
+	selectHint?: ProfileCard;
+	hints?: ProfileCard[];
 };
