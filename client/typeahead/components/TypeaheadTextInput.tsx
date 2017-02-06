@@ -31,13 +31,16 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
     const text = this.props.value || this.state.text;
 
     return (
-      <input className="typeahead-input"
-        type="text"
-        placeholder={this.props.placeholder}
-        autoFocus={true}
-        value={text}
-        onChange={this.handleChange.bind(this)}
-        onKeyUp={this.handleSubmit.bind(this)} />
+      <div className="u-posRelative">
+        <input className="Typeahead-hint" type="text" />
+        <input className="Typeahead-input tt-input"
+          type="text"
+          placeholder={this.props.placeholder}
+          autoFocus={true}
+          value={text}
+          onChange={this.handleChange.bind(this)}
+          onKeyUp={this.handleSubmit.bind(this)} />
+      </div>
     );
   }
 }

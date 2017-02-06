@@ -16,13 +16,10 @@ class Header extends React.Component<HeaderProps, void> {
 		console.log('Header render');
 		
 		return(
-			<div className="header">
-				<h1>typeahead</h1>
-				<TypeaheadTextInput 
-					value={this.props.value}
-					onTypeahead={this.handleSearch.bind(this)}
-					placeholder="Search Twitter users..." />
-			</div>
+			<TypeaheadTextInput 
+				value={this.props.value}
+				onTypeahead={this.handleSearch.bind(this)}
+				placeholder="Search Twitter users..." />
 		)
 	}
 }

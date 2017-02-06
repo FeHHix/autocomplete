@@ -16,11 +16,11 @@ class TypeaheadItem extends React.Component<TypeaheadItemProps, void> {
 		const { profileCard } = this.props;
 
 		return(
-			<div className="profilecard" onClick={this.handleClick.bind(this)} >
-				<div className="profilecard-details">
-					<div className="profilecard-realName">{profileCard.realName}</div>
-					<div className="profilecard-screenName">{profileCard.screenName}</div>
-					<div className="profilecard-description">{profileCard.description}</div>
+			<div className="ProfileCard u-cf Typeahead-suggestion Typeahead-selectable" onClick={this.handleClick.bind(this)} >
+				<div className="ProfileCard-details">
+					<div className="ProfileCard-realName">{profileCard.realName}</div>
+					<div className="ProfileCard-screenName">{profileCard.screenName}</div>
+					<div className="ProfileCard-description">{profileCard.description}</div>
 				</div>
 			</div>
 		);

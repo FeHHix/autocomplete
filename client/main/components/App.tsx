@@ -25,7 +25,7 @@ class App extends React.Component<AppProps, void> {
 		const selectValue = hint ? hint.realName : '';
 		
 		return(
-			<div className="typeaheadapp">
+			<div className="Typeahead Typeahead--twitterUsers">
 				<Header value={selectValue} getHints={(text: string) => dispatch(fetchHints({value:text, dispatch:dispatch}))} />
 				<Menu hints={hints} onClickHint={(hint: model.ProfileCard) => dispatch(selectHint(hint))} />
 			</div>
