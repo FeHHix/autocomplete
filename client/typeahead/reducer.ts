@@ -47,7 +47,8 @@ export default handleActions<IState, any>({
 
 		return {
 			...state,
-			selectHint: action.payload
+			selectHint: action.payload,
+			hints: []
 		}
 	}
 }, initialState);

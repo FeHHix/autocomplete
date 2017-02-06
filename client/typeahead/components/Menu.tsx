@@ -24,7 +24,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log('componentWillReceiveProps')
+		console.log('componentWillReceiveProps');
 		this.setState({isOpen: nextProps.hints.length > 0});
 	}
 
