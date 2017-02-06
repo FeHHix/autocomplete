@@ -1,11 +1,12 @@
 export type ProfileCard = {
+	id: number;
 	realName: string;
 	screenName: string;
 	description: string;
 };
 
 export type SelectItem = {
-	id: string;
+	id: number;
 }
 
 export type RequestItem = {

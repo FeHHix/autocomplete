@@ -29,9 +29,9 @@ interface Fetch {
 	dispatch: Dispatch<{}>;
 }
 
-const selectItem = createAction<SelectItem, string>(
+const selectItem = createAction<SelectItem, number>(
 	SELECT_ITEM,
-	(id: string) => ({id: id})
+	(id: number) => ({id: id})
 )
 
 const requestItems = createAction<RequestItem, string>(
@@ -80,4 +80,4 @@ const fetchItems = createAction<Promise<void>, Fetch>(
 	}
 )
 
-export { fetchItems }
+export { selectItem, fetchItems }

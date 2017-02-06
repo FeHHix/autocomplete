@@ -16,11 +16,7 @@ import {
 
 const initialState: IState = {
 	isFetching: false,
-	items: [{
-		realName: '',
-		screenName: '',
-		description: ''
-	}]
+	items: []
 };
 
 //it uses handleActions instead function with switch block

@@ -6,7 +6,8 @@ import {
   Header,
   Menu,
   model,
-  fetchItems
+  fetchItems,
+  selectItem
 } from '../../typeahead'
 
 interface AppProps {
@@ -21,14 +22,14 @@ class App extends React.Component<AppProps, void> {
 
 		let rows = [];
 
-		items.map(function(item, index) {
-			rows.push(<div key={index} className="item">Подсказка: {item.description}</div>);
+		items.map(function(item) {
+			rows.push(<div key={item.id} className="item">Подсказка: {item.description}</div>);
 		});
 		
 		return(
 			<div className="typeaheadapp">
 				<Header getItems={(text: string) => dispatch(fetchItems({value:text, dispatch}))} />
-				<Menu items={items} />
+				<Menu items={items} onClickItem={(id: number) => dispatch(selectItem(id))} />
 			</div>
 		);
 	}

@@ -3,10 +3,16 @@ import { ProfileCard } from '../model'
 import TypeaheadItem from './TypeaheadItem'
 
 interface MenuProps {
-	items: ProfileCard[]
+	onClickItem: (id: number) => void;
+	selectedItem?: ProfileCard;
+	items: ProfileCard[];
 }
 
 class Menu extends React.Component<MenuProps, void> {
+	handleSelectItem(id: number) {
+		this.props.onClickItem(id);
+	}
+
 	render() {
 		const { items } = this.props;
 
@@ -14,7 +20,7 @@ class Menu extends React.Component<MenuProps, void> {
 			<div className="typeahead-menu">
 				<div className="dataset">
 					{
-						items.map((item, index) => <TypeaheadItem key={index} profileCard={item} />)
+						items.map((item, index) => <TypeaheadItem key={index} profileCard={item} onClick={this.handleSelectItem.bind(this)} />)
 					}
 				</div>
 			</div>
