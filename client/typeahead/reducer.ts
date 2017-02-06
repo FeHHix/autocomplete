@@ -4,7 +4,6 @@ import {
 	ProfileCard,
 	RequestItem,
 	ReceiveItems,
-	SelectItem,
 	IState
 } from './model';
 
@@ -16,6 +15,7 @@ import {
 
 const initialState: IState = {
 	isFetching: false,
+	selectItem: null,
 	items: []
 };
 
@@ -41,12 +41,12 @@ export default handleActions<IState, any>({
 			items: action.payload.items
 		};
 	},
-	[SELECT_ITEM]: (state: IState, action: Action<SelectItem>) : IState => {
-		console.log('SELECT_ITEM. Selected item ' + action.payload.id);
+	[SELECT_ITEM]: (state: IState, action: Action<ProfileCard>) : IState => {
+		console.log('SELECT_ITEM. Selected item ' + action.payload.realName);
 
 		return {
 			...state,
-			selectItem: {...state, id: action.payload.id}
+			selectItem: action.payload
 		}
 	}
 }, initialState);

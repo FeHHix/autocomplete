@@ -5,10 +5,6 @@ export type ProfileCard = {
 	description: string;
 };
 
-export type SelectItem = {
-	id: number;
-}
-
 export type RequestItem = {
 	value: string;
 }
@@ -19,6 +15,6 @@ export type ReceiveItems = {
 
 export type IState = {
 	isFetching: boolean;
-	selectItem?: SelectItem;
+	selectItem?: ProfileCard;
 	items?: ProfileCard[];
 };

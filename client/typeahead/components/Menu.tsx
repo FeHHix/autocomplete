@@ -3,14 +3,14 @@ import { ProfileCard } from '../model'
 import TypeaheadItem from './TypeaheadItem'
 
 interface MenuProps {
-	onClickItem: (id: number) => void;
+	onClickItem: (item: ProfileCard) => void;
 	selectedItem?: ProfileCard;
 	items: ProfileCard[];
 }
 
 class Menu extends React.Component<MenuProps, void> {
-	handleSelectItem(id: number) {
-		this.props.onClickItem(id);
+	handleSelectItem(item: ProfileCard) {
+		this.props.onClickItem(item);
 	}
 
 	render() {

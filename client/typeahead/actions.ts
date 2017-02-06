@@ -10,8 +10,7 @@ import { Promise } from 'es6-promise'
 
 import api from './api'
 
-import { 
-	SelectItem, 
+import {
 	ReceiveItems, 
 	RequestItem, 
 	ProfileCard 
@@ -29,9 +28,9 @@ interface Fetch {
 	dispatch: Dispatch<{}>;
 }
 
-const selectItem = createAction<SelectItem, number>(
+const selectItem = createAction<ProfileCard, ProfileCard>(
 	SELECT_ITEM,
-	(id: number) => ({id: id})
+	(item: ProfileCard) => (item)
 )
 
 const requestItems = createAction<RequestItem, string>(

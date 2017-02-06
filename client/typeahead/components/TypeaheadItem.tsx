@@ -2,14 +2,14 @@ import * as React from 'react'
 import { ProfileCard } from '../model'
 
 interface TypeaheadItemProps {
-	onClick: (id: number) => void;
+	onClick: (item: ProfileCard) => void;
 	profileCard: ProfileCard;
 	key?: any;
 }
 
 class TypeaheadItem extends React.Component<TypeaheadItemProps, void> {
 	handleClick() {
-		this.props.onClick(this.props.profileCard.id);
+		this.props.onClick(this.props.profileCard);
 	}
 
 	render() {
