@@ -4,7 +4,6 @@ import TypeaheadItem from './TypeaheadItem'
 
 interface MenuProps {
 	onClickItem: (item: ProfileCard) => void;
-	selectedItem?: ProfileCard;
 	items: ProfileCard[];
 }
 

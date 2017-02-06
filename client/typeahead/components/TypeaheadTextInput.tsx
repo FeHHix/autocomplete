@@ -2,7 +2,7 @@ import * as React from 'react'
 
 interface TypeaheadTextInputProps {
   onTypeahead: (text:string)=>void;
-  text?: string;
+  value?: string;
   placeholder?: string;
 }
 
@@ -14,7 +14,7 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
   constructor(props, context) {
     super(props, context);
     this.state = {
-      text: this.props.text || ''
+      text: this.props.value || ''
     };
   }
 
@@ -28,12 +28,14 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
   }
 
   render() {
+    const text = this.props.value || this.state.text;
+
     return (
       <input className="typeahead-input"
         type="text"
         placeholder={this.props.placeholder}
         autoFocus={true}
-        value={this.state.text}
+        value={text}
         onChange={this.handleChange.bind(this)}
         onKeyUp={this.handleSubmit.bind(this)} />
     );

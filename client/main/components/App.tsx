@@ -12,13 +12,15 @@ import {
 
 interface AppProps {
 	isFetching: boolean;
+	item: model.ProfileCard;
 	items: model.ProfileCard[];
 	dispatch: Dispatch<{}>;
 }
 
 class App extends React.Component<AppProps, void> {
 	render() {
-		const { dispatch, items } = this.props;
+		const { dispatch, items, item } = this.props;
+		const selectValue = item ? item.realName : '';
 
 		let rows = [];
 
@@ -28,7 +30,7 @@ class App extends React.Component<AppProps, void> {
 		
 		return(
 			<div className="typeaheadapp">
-				<Header getItems={(text: string) => dispatch(fetchItems({value:text, dispatch}))} />
+				<Header value={selectValue} getItems={(text: string) => dispatch(fetchItems({value:text, dispatch}))} />
 				<Menu items={items} onClickItem={(item: model.ProfileCard) => dispatch(selectItem(item))} />
 			</div>
 		);
@@ -37,6 +39,7 @@ class App extends React.Component<AppProps, void> {
 
 const mapStateToProps = state => ({
 	isFetching: state.data.isFetching,
+	item: state.data.selectItem,
 	items: state.data.items
 });
 
