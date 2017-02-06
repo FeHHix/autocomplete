@@ -6,7 +6,7 @@ import { Dispatch } from 'redux'
 
 import { Promise } from 'es6-promise'
 
-import api from './api'
+import STUB_API from './api'
 
 import {
 	ReceiveItems, 
@@ -47,10 +47,10 @@ const fetchHints = createAction<Promise<void>, Fetch>(
 	FETCH_HINTS,
 	(fetch: Fetch) => {
 		fetch.dispatch(requestHints(fetch.value));
-
+		
 		const p: Promise<String> = new Promise(
 			(resolve: (str: string) => void, reject: (str: string) => void) => {
-				resolve(JSON.stringify(api.get(fetch.value)));
+				resolve(JSON.stringify(STUB_API.get(fetch.value)));
 			}
 		);
 		//https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=

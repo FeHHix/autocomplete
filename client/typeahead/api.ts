@@ -34,7 +34,7 @@ const items: ProfileCard[] = [
 	}
 ]
 
-const api = {
+const STUB_API = {
 	get: (filter: string) => {
 		const value = filter.trim();
 
@@ -50,4 +50,4 @@ const api = {
 	}
 }
 
-export default api
+export default STUB_API
