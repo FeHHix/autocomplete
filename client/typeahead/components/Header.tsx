@@ -13,6 +13,8 @@ class Header extends React.Component<HeaderProps, void> {
 	}
 
 	render() {
+		console.log('Header render');
+		
 		return(
 			<div className="header">
 				<h1>typeahead</h1>

@@ -27,6 +27,7 @@ export default handleActions<IState, any>({
 		return {
 			...state,
 			isFetching: true,
+			selectItem: null,
 			items: []
 		};
 	},

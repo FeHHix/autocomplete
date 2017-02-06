@@ -42,7 +42,6 @@ const api = {
 
 		forEach(items, (item) => {
 			if (includes(item.realName, value)) {
-				console.log('MATCHED');
 				matches.push(item);
 			}
 		});

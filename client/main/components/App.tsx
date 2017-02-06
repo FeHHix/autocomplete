@@ -19,7 +19,9 @@ interface AppProps {
 
 class App extends React.Component<AppProps, void> {
 	render() {
-		const { dispatch, items, item } = this.props;
+		console.log('App render');
+
+		const { isFetching, dispatch, items, item } = this.props;
 		const selectValue = item ? item.realName : '';
 
 		let rows = [];
