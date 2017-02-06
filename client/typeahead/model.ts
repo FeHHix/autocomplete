@@ -4,6 +4,10 @@ export type ProfileCard = {
 	description: string;
 };
 
+export type SelectItem = {
+	id: string;
+}
+
 export type RequestItem = {
 	value: string;
 }
@@ -14,5 +18,6 @@ export type ReceiveItems = {
 
 export type IState = {
 	isFetching: boolean;
+	selectItem?: SelectItem;
 	items?: ProfileCard[];
 };

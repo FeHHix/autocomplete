@@ -3,11 +3,13 @@ import { handleActions, Action } from 'redux-actions';
 import { 
 	ProfileCard,
 	RequestItem,
-	ReceiveItems, 
+	ReceiveItems,
+	SelectItem,
 	IState
 } from './model';
 
 import {
+	SELECT_ITEM,
 	REQUEST_ITEMS,
 	RECEIVE_ITEMS
 } from './constants/ActionTypes';
@@ -27,6 +29,7 @@ export default handleActions<IState, any>({
 		console.log('REQUEST_ITEMS. Fetching is starting as ' + action.payload.value);
 
 		return {
+			...state,
 			isFetching: true,
 			items: []
 		};
@@ -37,8 +40,17 @@ export default handleActions<IState, any>({
 		console.log(action.payload.items);
 
 		return {
-			isFetching: false, 
+			...state, 
+			isFetching: false,
 			items: action.payload.items
 		};
+	},
+	[SELECT_ITEM]: (state: IState, action: Action<SelectItem>) : IState => {
+		console.log('SELECT_ITEM. Selected item ' + action.payload.id);
+
+		return {
+			...state,
+			selectItem: {...state, id: action.payload.id}
+		}
 	}
 }, initialState);

@@ -6,21 +6,33 @@ import { Promise } from 'es6-promise'
 
 // import fetch from 'isomorphic-fetch'
 
-// import request from 'superagent/lib/client'
+// import request from 'superagent'
 
-import { ReceiveItems, RequestItem, ProfileCard } from './model'
 import api from './api'
+
+import { 
+	SelectItem, 
+	ReceiveItems, 
+	RequestItem, 
+	ProfileCard 
+} from './model'
 
 import { 
 	REQUEST_ITEMS,
 	RECEIVE_ITEMS,
-	FETCH_ITEMS
+	FETCH_ITEMS,
+	SELECT_ITEM
 } from './constants/ActionTypes'
 
 interface Fetch {
 	value: string;
 	dispatch: Dispatch<{}>;
 }
+
+const selectItem = createAction<SelectItem, string>(
+	SELECT_ITEM,
+	(id: string) => ({id: id})
+)
 
 const requestItems = createAction<RequestItem, string>(
 	REQUEST_ITEMS,

@@ -1,3 +1,4 @@
-export const REQUEST_ITEMS = "REQUEST_ITEMS";
-export const RECEIVE_ITEMS = "RECEIVE_ITEMS";
-export const FETCH_ITEMS = "FETCH_ITEMS";
+export const REQUEST_ITEMS = 'REQUEST_ITEMS';
+export const RECEIVE_ITEMS = 'RECEIVE_ITEMS';
+export const FETCH_ITEMS = 'FETCH_ITEMS';
+export const SELECT_ITEM = 'SELECT_ITEM';
