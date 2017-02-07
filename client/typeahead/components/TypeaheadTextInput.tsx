@@ -2,6 +2,7 @@ import * as React from 'react'
 
 interface TypeaheadTextInputProps {
   onTypeahead: (text:string)=>void;
+  onFocus: (isFocused: boolean) => void;
   value?: string;
   placeholder?: string;
 }
@@ -27,8 +28,12 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
     this.setState({ text: e.target.value });
   }
 
-  handleBlur(e) {
-    this.setState({ text: e.target.value });
+  handleFocus() {
+    this.props.onFocus(true);
+  }
+
+  handleBlur() {
+    this.props.onFocus(false);
   }
 
   render() {
@@ -43,7 +48,9 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
           autoFocus={true}
           value={text}
           onChange={this.handleChange.bind(this)}
-          onKeyUp={this.handleSubmit.bind(this)} />
+          onKeyUp={this.handleSubmit.bind(this)} 
+          onBlur={this.handleBlur.bind(this)} 
+          onFocus={this.handleFocus.bind(this)} />
       </div>
     );
   }

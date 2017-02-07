@@ -21,17 +21,41 @@ interface AppProps {
 	selectHint(hint: model.ProfileCard):void;
 }
 
-class App extends React.Component<AppProps, void> {
+interface AppState {
+	isFocused: boolean;
+}
+
+class App extends React.Component<AppProps, AppState> {
+	constructor(props, context) {
+		super(props, context);
+
+		this.state = {
+			isFocused: false
+		}
+	}
+
+	shouldCloseMenu(isFocused: boolean) {
+		console.log('shouldCloseMenu ' + isFocused);
+		this.setState({isFocused: isFocused});
+	}
+
 	render() {
 		console.log('App render');
 
 		const { isFetching, getHints, selectHint, hints, hint } = this.props;
+		const { isFocused } = this.state;
+
 		const selectValue = hint ? hint.realName : '';
+
+		let menu;
+
+		if (isFocused)
+			menu = <Menu hints={hints} onClickHint={(hint: model.ProfileCard) => {selectHint(hint)}} />;
 		
 		return(
 			<div className="Typeahead Typeahead--twitterUsers">
-				<Header value={selectValue} getHints={(text: string) => {getHints(text)}} />
-				<Menu hints={hints} onClickHint={(hint: model.ProfileCard) => {selectHint(hint)}} />
+				<Header value={selectValue} getHints={(text: string) => {getHints(text)}} getIsFocused={this.shouldCloseMenu.bind(this)} />
+				{menu}
 			</div>
 		);
 	}
