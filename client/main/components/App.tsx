@@ -35,7 +35,6 @@ class App extends React.Component<AppProps, AppState> {
 	}
 
 	shouldCloseMenu(isFocused: boolean) {
-		console.log('shouldCloseMenu ' + isFocused);
 		this.setState({isFocused: isFocused});
 	}
 

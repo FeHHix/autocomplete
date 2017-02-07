@@ -7,9 +7,21 @@ interface TypeaheadItemProps {
 	key?: any;
 }
 
-class TypeaheadItem extends React.Component<TypeaheadItemProps, void> {
+interface TypeaheadItemState {
+	profileCard: ProfileCard;
+}
+
+class TypeaheadItem extends React.Component<TypeaheadItemProps, TypeaheadItemState> {
+	constructor(props, context) {
+		super(props, context);
+
+		this.state = {
+			profileCard: this.props.profileCard;
+		}
+	}
+
 	handleClick() {
-		this.props.onClick(this.props.profileCard);
+		this.props.onClick(this.state.profileCard);
 	}
 
 	render() {
