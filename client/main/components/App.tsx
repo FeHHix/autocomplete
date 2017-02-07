@@ -15,19 +15,21 @@ interface AppProps {
 	hint: model.ProfileCard;
 	hints: model.ProfileCard[];
 	dispatch: Dispatch<{}>;
+	getHints(value: string):void;
+	selectHint(hint: model.ProfileCard):void;
 }
 
 class App extends React.Component<AppProps, void> {
 	render() {
 		console.log('App render');
 
-		const { isFetching, dispatch, hints, hint } = this.props;
+		const { isFetching, getHints, selectHint, hints, hint } = this.props;
 		const selectValue = hint ? hint.realName : '';
 		
 		return(
 			<div className="Typeahead Typeahead--twitterUsers">
-				<Header value={selectValue} getHints={(text: string) => dispatch(fetchHints({value:text, dispatch:dispatch}))} />
-				<Menu hints={hints} onClickHint={(hint: model.ProfileCard) => dispatch(selectHint(hint))} />
+				<Header value={selectValue} getHints={(text: string) => {getHints(text)}} />
+				<Menu hints={hints} onClickHint={(hint: model.ProfileCard) => {selectHint(hint)}} />
 			</div>
 		);
 	}
@@ -39,5 +41,14 @@ const mapStateToProps = state => ({
 	hints: state.data.hints
 });
 
-export default connect(mapStateToProps)(App); //it connects an application to store
+const mapDispatchToProps = dispatch => ({
+	getHints: (value: string) => {
+		dispatch(fetchHints({value:value, dispatch:dispatch}));
+	},
+	selectHint: (hint: model.ProfileCard) => {
+		dispatch(selectHint(hint));
+	}
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App); //it connects an application to store
 
