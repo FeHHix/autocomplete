@@ -16,7 +16,7 @@ class TypeaheadItem extends React.Component<TypeaheadItemProps, TypeaheadItemSta
 		super(props, context);
 
 		this.state = {
-			profileCard: this.props.profileCard;
+			profileCard: this.props.profileCard
 		}
 	}
 

@@ -44,8 +44,6 @@ class App extends React.Component<AppProps, AppState> {
 		const { isFetching, getHints, selectHint, hints, hint } = this.props;
 		const { isFocused } = this.state;
 
-		const selectValue = hint ? hint.realName : '';
-
 		let menu;
 
 		if (isFocused)
@@ -53,7 +51,7 @@ class App extends React.Component<AppProps, AppState> {
 		
 		return(
 			<div className="Typeahead Typeahead--twitterUsers">
-				<Header value={selectValue} getHints={(text: string) => {getHints(text)}} getIsFocused={this.shouldCloseMenu.bind(this)} />
+				<Header value={hint ? hint.realName : ''} getHints={(text: string) => {getHints(text)}} getIsFocused={this.shouldCloseMenu.bind(this)} />
 				{menu}
 			</div>
 		);

@@ -15,7 +15,7 @@ class Menu extends React.Component<MenuProps, MenuState> {
 	constructor(props, context) {
 		super(props, context);
 		this.state = {
-			isOpen: false
+			isOpen: this.props.hints.length > 0
 		}
 	}
 
@@ -24,7 +24,6 @@ class Menu extends React.Component<MenuProps, MenuState> {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		console.log('componentWillReceiveProps');
 		this.setState({isOpen: nextProps.hints.length > 0});
 	}
 
