@@ -19,7 +19,6 @@ interface AppProps {
 	dispatch: Dispatch<{}>;
 	getHints(value: string):void;
 	selectHint(hint: model.ProfileCard):void;
-	fetchHints(value: string):void;
 }
 
 class App extends React.Component<AppProps, void> {
