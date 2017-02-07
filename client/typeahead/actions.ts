@@ -17,9 +17,9 @@ import {
 	RECEIVE_HINTS
 } from './constants/ActionTypes'
 
-const selectHint = createAction<ProfileCard, ProfileCard>(
+const selectHint = createAction<string, string>(
 	SELECT_HINT,
-	(item: ProfileCard) => (item)
+	(value: string) => (value)
 )
 
 const requestHints = createAction<RequestItem, string>(

@@ -15,7 +15,6 @@ import {
 
 const initialState: IState = {
 	isFetching: false,
-	selectHint: null,
 	hints: []
 };
 
@@ -28,7 +27,6 @@ export default handleActions<IState, any>({
 			...state,
 			isFetching: true,
 			value: action.payload.value,
-			selectHint: null,
 			hints: []
 		};
 	},
@@ -43,13 +41,12 @@ export default handleActions<IState, any>({
 			hints: action.payload.hints
 		};
 	},
-	[SELECT_HINT]: (state: IState, action: Action<ProfileCard>) : IState => {
-		console.log('SELECT_ITEM. Selected item ' + action.payload.realName);
+	[SELECT_HINT]: (state: IState, action: Action<string>) : IState => {
+		console.log('SELECT_ITEM. Selected item ' + action.payload);
 
 		return {
 			...state,
-			value: action.payload.realName,
-			selectHint: action.payload,
+			value: action.payload,
 			hints: []
 		}
 	}

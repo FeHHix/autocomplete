@@ -17,14 +17,16 @@ interface AppProps {
 	hint: model.ProfileCard;
 	hints: model.ProfileCard[];
 	dispatch: Dispatch<{}>;
+	value: string;
 	getHints(value: string):void;
-	selectHint(hint: model.ProfileCard):void;
+	selectHint(value: string):void;
 }
 
 interface AppState {
-	isFocused: boolean;
+	isFocused?: boolean;
 	showResult?: boolean;
 	entryValue?: string;
+	changedValue?: boolean;
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -33,31 +35,51 @@ class App extends React.Component<AppProps, AppState> {
 
 		this.state = {
 			isFocused: false,
-			showResult: false
+			showResult: false,
+			changedValue: false
 		}
 	}
 
 	shouldCloseMenu(isFocused: boolean) {
 		if (isFocused)
 			this.setState({isFocused: isFocused, showResult: true});
-		else
+		else if (!this.state.showResult)
 			this.setState({isFocused: !isFocused});
 	}
 
-	hintSelected(hint: model.ProfileCard) {
-		this.setState({entryValue: hint.realName, isFocused: false, showResult: false});
+	selectHint(hint: model.ProfileCard) {
+		console.log('selectHint');
+		this.props.selectHint(hint.realName);
+		// this.setState({
+		// 	entryValue: hint.realName,
+		// 	isFocused: false, 
+		// 	showResult: false
+		// });
+	}
+
+	componentWillReceiveProps(nextProps) {
+		console.log('componentWillReceiveProps');
+	    this.setState({
+	    	entryValue: nextProps.value,
+	    	showResult: nextProps.hints.length > 0
+	    });
+	}
+
+	shouldComponentUpdate() {
+		console.log('shouldComponentUpdate');
+		return true;
 	}
 
 	render() {
 		console.log('App render');
 
-		const { isFetching, getHints, selectHint, hints, hint } = this.props;
+		const { isFetching, getHints, hints, hint } = this.props;
 		const { showResult, entryValue } = this.state;
 
 		let menu;
 
 		if (showResult)
-			menu = <Menu hints={hints} onClickHint={this.hintSelected.bind(this)} />;
+			menu = <Menu hints={hints} onClickHint={this.selectHint.bind(this)} />;
 		
 		return(
 			<div className="Typeahead Typeahead--twitterUsers">
@@ -70,8 +92,8 @@ class App extends React.Component<AppProps, AppState> {
 
 const mapStateToProps = state => ({
 	isFetching: state.data.isFetching,
-	hint: state.data.selectHint,
-	hints: state.data.hints
+	hints: state.data.hints,
+	value: state.data.value
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -82,8 +104,8 @@ const mapDispatchToProps = dispatch => ({
 			dispatch(receiveHints(hints));
 		});
 	},
-	selectHint: (hint: model.ProfileCard) => {
-		dispatch(selectHint(hint));
+	selectHint: (value: string) => {
+		dispatch(selectHint(value));
 	}
 });
 
