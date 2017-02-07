@@ -1,8 +1,5 @@
 import { CALL_API } from 'redux-api-middleware'
-
 import { createAction, Action } from 'redux-actions'
-
-import { Dispatch } from 'redux'
 
 import { Promise } from 'es6-promise'
 
@@ -19,11 +16,6 @@ import {
 	REQUEST_HINTS,
 	RECEIVE_HINTS
 } from './constants/ActionTypes'
-
-interface Fetch {
-	value: string;
-	dispatch: Dispatch<{}>;
-}
 
 const selectHint = createAction<ProfileCard, ProfileCard>(
 	SELECT_HINT,
