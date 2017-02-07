@@ -27,6 +27,10 @@ class TypeaheadTextInput extends React.Component<TypeaheadTextInputProps, Typeah
     this.setState({ text: e.target.value });
   }
 
+  handleBlur(e) {
+    this.setState({ text: e.target.value });
+  }
+
   render() {
     const text = this.props.value || this.state.text;
 

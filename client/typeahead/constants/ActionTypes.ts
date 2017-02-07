@@ -1,6 +1,3 @@
 export const REQUEST_HINTS = 'REQUEST_ITEMS_SUCCESS';
 export const RECEIVE_HINTS = 'RECEIVE_ITEMS';
-export const FETCH_HINTS = 'FETCH_ITEMS';
-export const FETCH_HINTS_SUCCESS = 'FETCH_ITEMS';
-export const FETCH_HINTS_FAILURE = 'FETCH_ITEMS';
 export const SELECT_HINT = 'SELECT_ITEM';

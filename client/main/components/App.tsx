@@ -7,6 +7,8 @@ import {
   Menu,
   model,
   fetchHints,
+  requestHints,
+  receiveHints,
   selectHint
 } from '../../typeahead'
 
@@ -17,6 +19,7 @@ interface AppProps {
 	dispatch: Dispatch<{}>;
 	getHints(value: string):void;
 	selectHint(hint: model.ProfileCard):void;
+	fetchHints(value: string):void;
 }
 
 class App extends React.Component<AppProps, void> {
@@ -43,7 +46,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getHints: (value: string) => {
-		dispatch(fetchHints({value:value, dispatch:dispatch}));
+		dispatch(requestHints(value));
+
+		fetchHints(value).then((hints: model.ProfileCard[]) => {
+			dispatch(receiveHints(hints));
+		});
 	},
 	selectHint: (hint: model.ProfileCard) => {
 		dispatch(selectHint(hint));

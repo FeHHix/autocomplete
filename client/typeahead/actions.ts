@@ -17,10 +17,7 @@ import {
 import { 
 	SELECT_HINT,
 	REQUEST_HINTS,
-	RECEIVE_HINTS,
-	FETCH_HINTS,
-	FETCH_HINTS_SUCCESS,
-	FETCH_HINTS_FAILURE
+	RECEIVE_HINTS
 } from './constants/ActionTypes'
 
 interface Fetch {
@@ -43,31 +40,14 @@ const receiveHints = createAction<ReceiveItems, ProfileCard[]>(
 	(hints: ProfileCard[]) => ({hints: hints})
 )
 
-const fetchHints = createAction<Promise<void>, Fetch>(
-	FETCH_HINTS,
-	(fetch: Fetch) => {
-		fetch.dispatch(requestHints(fetch.value));
-		
-		const p: Promise<String> = new Promise(
-			(resolve: (str: string) => void, reject: (str: string) => void) => {
-				resolve(JSON.stringify(STUB_API.get(fetch.value)));
-			}
-		);
-		//https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=
-		return p.then((json: string) => {
-			console.log('load items complete');
-			fetch.dispatch(receiveHints(JSON.parse(json)));
-		});
-	}
-)
+const fetchHints = (value: string) => {
+	const p: Promise<ProfileCard[]> = new Promise(
+		(resolve: (hints: ProfileCard[]) => void, reject: (str: string) => void) => {
+			resolve(STUB_API.get(value));
+		}
+	);
+	
+	return p;
+}
 
-// const fetchHints = (text: string) => {
-// 	console.log('fetchHints');
-// 	return {[CALL_API]: {
-// 		endpoint: 'https://typeahead-js-twitter-api-proxy.herokuapp.com/demo/search?q=' + text,
-//     	method: 'POST',
-//     	types: [receiveHints, FETCH_HINTS_SUCCESS, FETCH_HINTS_FAILURE]
-// 	}}
-// }
-
-export { selectHint, fetchHints }
+export { selectHint, fetchHints, requestHints, receiveHints }
