@@ -23,6 +23,8 @@ interface AppProps {
 
 interface AppState {
 	isFocused: boolean;
+	showResult?: boolean;
+	entryValue?: string;
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -30,28 +32,36 @@ class App extends React.Component<AppProps, AppState> {
 		super(props, context);
 
 		this.state = {
-			isFocused: false
+			isFocused: false,
+			showResult: false
 		}
 	}
 
 	shouldCloseMenu(isFocused: boolean) {
-		this.setState({isFocused: isFocused});
+		if (isFocused)
+			this.setState({isFocused: isFocused, showResult: true});
+		else
+			this.setState({isFocused: !isFocused});
+	}
+
+	hintSelected(hint: model.ProfileCard) {
+		this.setState({entryValue: hint.realName, isFocused: false, showResult: false});
 	}
 
 	render() {
 		console.log('App render');
 
 		const { isFetching, getHints, selectHint, hints, hint } = this.props;
-		const { isFocused } = this.state;
+		const { isFocused, showResult, entryValue } = this.state;
 
 		let menu;
 
-		if (isFocused)
-			menu = <Menu hints={hints} onClickHint={(hint: model.ProfileCard) => {selectHint(hint)}} />;
+		if (showResult)
+			menu = <Menu hints={hints} onClickHint={this.hintSelected.bind(this)} />;
 		
 		return(
 			<div className="Typeahead Typeahead--twitterUsers">
-				<Header value={hint ? hint.realName : ''} getHints={(text: string) => {getHints(text)}} getIsFocused={this.shouldCloseMenu.bind(this)} />
+				<Header value={entryValue} getHints={(text: string) => {getHints(text)}} getIsFocused={this.shouldCloseMenu.bind(this)} />
 				{menu}
 			</div>
 		);
