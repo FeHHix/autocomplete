@@ -50,11 +50,6 @@ class App extends React.Component<AppProps, AppState> {
 	selectHint(hint: model.ProfileCard) {
 		console.log('selectHint');
 		this.props.selectHint(hint.realName);
-		// this.setState({
-		// 	entryValue: hint.realName,
-		// 	isFocused: false, 
-		// 	showResult: false
-		// });
 	}
 
 	componentWillReceiveProps(nextProps) {
