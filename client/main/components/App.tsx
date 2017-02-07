@@ -43,8 +43,6 @@ class App extends React.Component<AppProps, AppState> {
 	shouldCloseMenu(isFocused: boolean) {
 		if (isFocused)
 			this.setState({isFocused: isFocused, showResult: true});
-		else if (!this.state.showResult)
-			this.setState({isFocused: !isFocused});
 	}
 
 	selectHint(hint: model.ProfileCard) {
@@ -58,11 +56,6 @@ class App extends React.Component<AppProps, AppState> {
 	    	entryValue: nextProps.value,
 	    	showResult: nextProps.hints.length > 0
 	    });
-	}
-
-	shouldComponentUpdate() {
-		console.log('shouldComponentUpdate');
-		return true;
 	}
 
 	render() {
