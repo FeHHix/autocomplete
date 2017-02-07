@@ -52,7 +52,7 @@ class App extends React.Component<AppProps, AppState> {
 		console.log('App render');
 
 		const { isFetching, getHints, selectHint, hints, hint } = this.props;
-		const { isFocused, showResult, entryValue } = this.state;
+		const { showResult, entryValue } = this.state;
 
 		let menu;
 

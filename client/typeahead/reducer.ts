@@ -27,6 +27,7 @@ export default handleActions<IState, any>({
 		return {
 			...state,
 			isFetching: true,
+			value: action.payload.value,
 			selectHint: null,
 			hints: []
 		};
@@ -47,6 +48,7 @@ export default handleActions<IState, any>({
 
 		return {
 			...state,
+			value: action.payload.realName,
 			selectHint: action.payload,
 			hints: []
 		}

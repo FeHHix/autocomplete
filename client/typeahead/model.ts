@@ -17,4 +17,5 @@ export type IState = {
 	isFetching: boolean;
 	selectHint?: ProfileCard;
 	hints?: ProfileCard[];
+	value?: string;
 };
