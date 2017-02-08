@@ -1,5 +1,5 @@
 export type ProfileCard = {
-	id: number;
+	id: string;
 	realName: string;
 	screenName: string;
 	description: string;
