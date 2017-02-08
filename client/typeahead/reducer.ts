@@ -21,7 +21,7 @@ const initialState: IState = {
 //it uses handleActions instead function with switch block
 export default handleActions<IState, any>({
 	[REQUEST_HINTS] : (state: IState, action: Action<RequestItem>) : IState => {
-		console.log('REQUEST_ITEMS');
+		console.log(REQUEST_HINTS);
 
 		return {
 			...state,
@@ -31,7 +31,7 @@ export default handleActions<IState, any>({
 		};
 	},
 	[RECEIVE_HINTS]: (state: IState, action: Action<ReceiveItems>) : IState => {
-		console.log('RECEIVE_ITEMS');
+		console.log(RECEIVE_HINTS);
 
 		return {
 			...state, 
@@ -40,7 +40,7 @@ export default handleActions<IState, any>({
 		};
 	},
 	[SELECT_HINT]: (state: IState, action: Action<string>) : IState => {
-		console.log('SELECT_ITEM');
+		console.log(SELECT_HINT);
 
 		return {
 			...state,
