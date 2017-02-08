@@ -23,10 +23,9 @@ interface AppProps {
 }
 
 interface AppState {
+	showResult: boolean;
 	isFocused?: boolean;
-	showResult?: boolean;
 	entryValue?: string;
-	changedValue?: boolean;
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -36,7 +35,7 @@ class App extends React.Component<AppProps, AppState> {
 		this.state = {
 			isFocused: false,
 			showResult: false,
-			changedValue: false
+			entryValue: ''
 		}
 	}
 
