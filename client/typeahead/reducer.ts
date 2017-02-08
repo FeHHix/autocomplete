@@ -18,7 +18,7 @@ const initialState: IState = {
 	hints: []
 };
 
-//it uses handleActions instead function with switch block
+/*It uses handleActions instead function with switch block. Is passed instead of map*/
 export default handleActions<IState, any>({
 	[REQUEST_HINTS] : (state: IState, action: Action<RequestItem>) : IState => {
 		console.log(REQUEST_HINTS);
