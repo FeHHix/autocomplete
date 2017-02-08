@@ -1,3 +1,3 @@
-export const REQUEST_HINTS = 'REQUEST_ITEMS_SUCCESS';
+export const REQUEST_HINTS = 'REQUEST_ITEMS';
 export const RECEIVE_HINTS = 'RECEIVE_ITEMS';
 export const SELECT_HINT = 'SELECT_ITEM';
