@@ -18,10 +18,10 @@ const initialState: IState = {
 	hints: []
 };
 
-//it uses handleActions instead function with switch block
+/*It uses handleActions instead function with switch block. Is passed instead of map*/
 export default handleActions<IState, any>({
 	[REQUEST_HINTS] : (state: IState, action: Action<RequestItem>) : IState => {
-		console.log('REQUEST_ITEMS. Fetching is starting as ' + action.payload.value);
+		console.log(REQUEST_HINTS);
 
 		return {
 			...state,
@@ -31,9 +31,7 @@ export default handleActions<IState, any>({
 		};
 	},
 	[RECEIVE_HINTS]: (state: IState, action: Action<ReceiveItems>) : IState => {
-		console.log('RECEIVE_ITEMS. Fetching completed');
-
-		console.log(action.payload.hints);
+		console.log(RECEIVE_HINTS);
 
 		return {
 			...state, 
@@ -42,7 +40,7 @@ export default handleActions<IState, any>({
 		};
 	},
 	[SELECT_HINT]: (state: IState, action: Action<string>) : IState => {
-		console.log('SELECT_ITEM. Selected item ' + action.payload);
+		console.log(SELECT_HINT);
 
 		return {
 			...state,

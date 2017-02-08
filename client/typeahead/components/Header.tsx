@@ -18,8 +18,6 @@ class Header extends React.Component<HeaderProps, void> {
 	}
 
 	render() {
-		console.log('Header render');
-		
 		return(
 			<TypeaheadTextInput 
 				value={this.props.value}
