@@ -7,33 +7,18 @@ interface MenuProps {
 	hints: ProfileCard[];
 }
 
-interface MenuState {
-	isOpen: boolean;
-}
-
-class Menu extends React.Component<MenuProps, MenuState> {
-	constructor(props, context) {
-		super(props, context);
-		this.state = {
-			isOpen: this.props.hints.length > 0
-		}
-	}
+class Menu extends React.Component<MenuProps, void> {
 
 	handleSelectHint(hint: ProfileCard) {
 		this.props.onClickHint(hint);
 	}
 
-	componentWillReceiveProps(nextProps) {
-		this.setState({isOpen: nextProps.hints.length > 0});
-	}
-
 	render() {
 		console.log('Menu render');
 		const { hints } = this.props;
-		const isOpenClass = this.state.isOpen ? 'Typeahead-menu is-open' : 'Typeahead-menu';
 
 		return(
-			<div className={isOpenClass}>
+			<div className='Typeahead-menu is-open'>
 				<div className="tt-dataset tt-dataset-0">
 					{
 						hints.map((hint, index) => <TypeaheadItem key={index} profileCard={hint} onClick={this.handleSelectHint.bind(this)} />)
