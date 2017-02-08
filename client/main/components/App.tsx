@@ -57,8 +57,6 @@ class App extends React.Component<AppProps, AppState> {
 	}
 
 	render() {
-		console.log('App render');
-
 		const { isFetching, getHints, hints, hint } = this.props;
 		const { showResult, entryValue } = this.state;
 		

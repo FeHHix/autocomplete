@@ -14,7 +14,6 @@ class Menu extends React.Component<MenuProps, void> {
 	}
 
 	render() {
-		console.log('Menu render');
 		const { hints } = this.props;
 
 		return(
