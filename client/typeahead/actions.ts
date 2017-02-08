@@ -1,4 +1,3 @@
-import { CALL_API } from 'redux-api-middleware'
 import { createAction, Action } from 'redux-actions'
 
 import { Promise } from 'es6-promise'
