@@ -26,6 +26,13 @@ const requestHints = createAction<RequestItem, string>(
 	(text: string) => ({value: text})
 )
 
+const requestHints1 = function(value: string) {
+	return {
+		type: REQUEST_HINTS,
+		payload: {value}
+	}
+}
+
 const receiveHints = createAction<ReceiveItems, ProfileCard[]>(
 	RECEIVE_HINTS,
 	(hints: ProfileCard[]) => ({hints: hints})

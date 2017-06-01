@@ -31,7 +31,7 @@ interface AppState {
 class App extends React.Component<AppProps, AppState> {
 	constructor(props, context) {
 		super(props, context);
-
+		
 		this.state = {
 			isFocused: false,
 			showResult: false,

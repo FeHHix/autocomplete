@@ -8,6 +8,8 @@ import rootReducer from './main/reducer'
 
 let store: Store<any> = createStore(rootReducer) //configuration store with empty initial state
 
+console.log(store.getState());
+
 ReactDOM.render(
 	<Provider store={store}>
 		<App />
