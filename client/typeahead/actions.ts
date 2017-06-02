@@ -1,8 +1,13 @@
 import { createAction, Action } from 'redux-actions'
+import { Dispatch } from 'redux'
 
 import { Promise } from 'es6-promise'
 
 import STUB_API from './api'
+
+import {
+  model
+} from '../typeahead'
 
 import {
 	ReceiveItems, 
@@ -38,6 +43,16 @@ const receiveHints = createAction<ReceiveItems, ProfileCard[]>(
 	(hints: ProfileCard[]) => ({hints: hints})
 )
 
+export function getHints (value: string) {
+	return (dispatch: Dispatch<{}>) => {
+		dispatch(requestHints(value));
+
+		fetchHints(value).then((hints: model.ProfileCard[]) => {
+			dispatch(receiveHints(hints));
+		});
+	}
+}
+
 const fetchHints = (value: string) => {
 	const p: Promise<ProfileCard[]> = new Promise(
 		(resolve: (hints: ProfileCard[]) => void, reject: (str: string) => void) => {
@@ -48,4 +63,4 @@ const fetchHints = (value: string) => {
 	return p;
 }
 
-export { selectHint, fetchHints, requestHints, receiveHints }
+export { selectHint, requestHints, receiveHints }

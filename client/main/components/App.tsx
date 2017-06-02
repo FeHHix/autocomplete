@@ -6,10 +6,10 @@ import {
   Header,
   Menu,
   model,
-  fetchHints,
   requestHints,
   receiveHints,
-  selectHint
+  selectHint,
+  getHints
 } from '../../typeahead'
 
 interface AppProps {
@@ -76,11 +76,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	getHints: (value: string) => {
-		dispatch(requestHints(value));
-
-		fetchHints(value).then((hints: model.ProfileCard[]) => {
-			dispatch(receiveHints(hints));
-		});
+		getHints(value)(dispatch);
 	},
 	selectHint: (value: string) => {
 		dispatch(selectHint(value));
